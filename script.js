@@ -3,11 +3,11 @@ let popupCloseButtonElement = popupElement.querySelector('.popup__close-button')
 let popupOpenButtonElement = document.querySelector('.profile__edit-button');
 
 function openPopup() {
-  popupElement.classList.add('popup_is-opened');
+  popupElement.classList.add('popup_opened');
 }
 
 function closePopup() {
-  popupElement.classList.remove('popup_is-opened');
+  popupElement.classList.remove('popup_opened');
 }
 
 function closePopupByClickOnOverlay (event) {
