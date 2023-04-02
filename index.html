@@ -22,57 +22,14 @@
         </div>
         <button class="profile__add-button" type="button" aria-label="добавить фото"></button>
       </section>
-      <section class="elements">
-        <article class="element">
-          <img class="element__image" src="./images/kamchatka.jpg" alt="Камчатка">
-          <div class="element__items">
-            <h3 class="element__title">Камчатка</h3>
-            <button class="element__like" type="button" aria-label="понравилось"></button>
-          </div>
-        </article>
-        <article class="element">
-          <img class="element__image" src="./images/dagestan.jpg" alt="Дагестан">
-          <div class="element__items">
-            <h3 class="element__title">Дагестан</h3>
-            <button class="element__like" type="button" aria-label="понравилось"></button>
-          </div>
-        </article>
-        <article class="element">
-          <img class="element__image" src="./images/dombay.jpg" alt="Домбай">
-          <div class="element__items">
-            <h3 class="element__title">Домбай</h3>
-            <button class="element__like" type="button" aria-label="понравилось"></button>
-          </div>
-        </article>
-        <article class="element">
-          <img class="element__image" src="./images/karachaevsk.jpg" alt="Карачаево-черкессия">
-          <div class="element__items">
-            <h3 class="element__title">Карачаево-черкессия</h3>
-            <button class="element__like" type="button" aria-label="понравилось"></button>
-          </div>
-        </article>
-        <article class="element">
-          <img class="element__image" src="./images/elbrus.jpg" alt="Эльбрус">
-          <div class="element__items">
-            <h3 class="element__title">Гора Эльбрус</h3>
-            <button class="element__like" type="button" aria-label="понравилось"></button>
-          </div>
-        </article>
-        <article class="element">
-          <img class="element__image" src="./images/altay.jpg" alt="Алтай">
-          <div class="element__items">
-            <h3 class="element__title">Алтай</h3>
-            <button class="element__like" type="button" aria-label="понравилось"></button>
-          </div>
-        </article>
-      </section>
+      <section class="elements"></section>
     </main>
     <footer class="footer">
       <p class="footer__author">© 2023 Andrey Kotelnikov</p>
     </footer>
-    <div class="popup">
+    <div class="popup popup_function_edit-profile">
       <div class="popup__container">
-        <form class="popup__content" name="add-form">
+        <form class="popup__content" name="edit-form">
           <button class="popup__close-button" type="button" aria-label="закрыть"></button>
           <h3 class="popup__title">Редактировать профиль</h3>
           <input class="popup__text popup__text_type_name" type="text" name="name" placeholder="Ваше имя" required>
@@ -81,6 +38,37 @@
         </form>
       </div>
     </div>
+    <div class="popup popup_function_add-card">
+      <div class="popup__container">
+        <form class="popup__content" name="add-form">
+          <button class="popup__close-button" type="button" aria-label="закрыть"></button>
+          <h3 class="popup__title">Новое место</h3>
+          <input class="popup__text popup__text_type_location" type="text" name="location" placeholder="Название" required>
+          <input class="popup__text popup__text_type_image-link" type="text" name="image-link" placeholder="Ссылка на картинку" required>
+          <button class="popup__save-button" type="submit">Создать</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="popup popup_function_image">
+      <div class="popup__image-container">
+        <button class="popup__close-button" type="button" aria-label="закрыть"></button>
+        <img class="popup__image" src="#" alt="#">
+        <h3 class="popup__image-text"></h3>
+      </div>
+    </div>
+
+    <template class="template">
+      <article class="element">
+        <img class="element__image" src="" alt="">
+        <button class="element__trash" type="button" aria-label="удалить карточку"></button>
+        <div class="element__items">
+          <h3 class="element__title"></h3>
+          <button class="element__like" type="button" aria-label="понравилось"></button>
+        </div>
+      </article>
+    </template>
+
     <script src="./scripts/script.js"></script>
   </body>
 </html>
