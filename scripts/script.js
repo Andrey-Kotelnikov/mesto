@@ -84,6 +84,8 @@ initialCards.forEach(renderItem)
 
 // Функция открытия попапа добавления
 function openAddPopup() {
+  locationInput.value = '';
+  imageLinkInput.value = '';
   addPopupElement.classList.add('popup_opened');
 }
 
@@ -184,3 +186,8 @@ addPopupCloseButtonElement.addEventListener('click', closeAddPopup);
 addPopupFormElement.addEventListener('submit', addCard);
 
 imagePopupCloseButtonElement.addEventListener('click', closeImagePopup);
+
+
+
+
+
