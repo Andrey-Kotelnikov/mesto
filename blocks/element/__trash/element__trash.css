@@ -4,6 +4,7 @@
   right: 20px;
   background: url(../../../images/element__trash.svg);
   background-size: 100%;
+  background-repeat: no-repeat;
   width: 18px;
   height: 19px;
   border: 0;
