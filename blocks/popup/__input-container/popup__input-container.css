@@ -1,0 +1,9 @@
+.popup__input-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.popup__input-container:first-of-type {
+  margin-bottom: 30px;
+}

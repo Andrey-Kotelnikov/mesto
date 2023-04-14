@@ -27,24 +27,38 @@
     <footer class="footer">
       <p class="footer__author">© 2023 Andrey Kotelnikov</p>
     </footer>
+
     <div class="popup popup_function_edit-profile">
       <div class="popup__container">
-        <form class="popup__content" name="edit-form">
+        <form class="popup__content" name="edit-form" novalidate>
           <button class="popup__close-button" type="button" aria-label="закрыть"></button>
           <h3 class="popup__title">Редактировать профиль</h3>
-          <input class="popup__text popup__text_type_name" type="text" name="name" placeholder="Ваше имя" required>
-          <input class="popup__text popup__text_type_status" type="text" name="status" placeholder="О себе" required>
+          <label class="popup__input-container">
+            <input id="name-input" class="popup__text popup__text_type_name" type="text" name="name" placeholder="Ваше имя" minlength="2" maxlength="40" required>
+            <span class="name-input-error popup__text-error"></span>
+          </label>
+          <label class="popup__input-container">
+            <input id="status-input" class="popup__text popup__text_type_status" type="text" name="status" placeholder="О себе" minlength="2" maxlength="200" required>
+            <span class="status-input-error popup__text-error"></span>
+          </label>
           <button class="popup__save-button" type="submit">Сохранить</button>
         </form>
       </div>
     </div>
+
     <div class="popup popup_function_add-card">
       <div class="popup__container">
-        <form class="popup__content" name="add-form">
+        <form class="popup__content" name="add-form" novalidate>
           <button class="popup__close-button" type="button" aria-label="закрыть"></button>
           <h3 class="popup__title">Новое место</h3>
-          <input class="popup__text popup__text_type_location" type="text" name="location" placeholder="Название" required>
-          <input class="popup__text popup__text_type_image-link" type="text" name="image-link" placeholder="Ссылка на картинку" required>
+          <label class="popup__input-container">
+            <input id="location-input" class="popup__text popup__text_type_location" type="text" name="location" placeholder="Название" minlength="2" maxlength="30" required>
+            <span class="location-input-error popup__text-error"></span>
+          </label>
+          <label class="popup__input-container">
+            <input id="image-link-input" class="popup__text popup__text_type_image-link" type="url" name="image-link" placeholder="Ссылка на картинку" required>
+            <span class="image-link-input-error popup__text-error"></span>
+          </label>
           <button class="popup__save-button" type="submit">Создать</button>
         </form>
       </div>
