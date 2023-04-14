@@ -104,6 +104,9 @@ function openImagePopup(evt) {
 
 // Функция открытия попапов
 function openPopup(popup) {
+  const button = popup.querySelector('.popup__save-button');
+  button.classList.add('popup__save-button_inactive');
+  button.setAttribute('disabled', true); // Сделаем кнопку неактивной при открытии
   popup.classList.add('popup_opened');
   popup.addEventListener('click', closePopupOverlay); // Слушатель на закрытие кликом по оверлею
   document.addEventListener('keydown', closePopupEsc); // Слушатель на закрытие нажатием esc
