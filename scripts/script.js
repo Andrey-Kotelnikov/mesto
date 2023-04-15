@@ -17,6 +17,7 @@ const profileJobElement = document.querySelector('.profile__subtitle');
 
 const elements = document.querySelector('.elements');
 const template = document.querySelector('.template').content;
+const templateCard = template.querySelector('.element');
 
 const imagePopupElement = document.querySelector('.popup_function_image');
 
@@ -25,7 +26,7 @@ const popupImageText = imagePopupElement.querySelector('.popup__image-text');
 
 // Функция создания карточек
 createCard = (item) => {
-  const htlmElement = template.cloneNode(true);
+  const htlmElement = templateCard.cloneNode(true);
 
   const templateImage = htlmElement.querySelector('.element__image');
   const templateTitle = htlmElement.querySelector('.element__title');
@@ -51,11 +52,12 @@ initialCards.forEach((item) => {
   renderCard(createCard(item));
 });
 
-// Функция открытия попапа добавления
+// Функция открытия попапа добавления карточек
 function openAddPopup() {
   locationInput.value = '';
   imageLinkInput.value = '';
   openPopup(popupAddCardElement);
+  disableButton(popupAddCardElement)
 }
 
 // Функция добавления карточки
@@ -83,10 +85,11 @@ function openEditPopup() {
   nameInput.value = profileNameElement.textContent;
   jobInput.value = profileJobElement.textContent;
   openPopup(popupProfileElement);
+  disableButton(popupProfileElement);
 }
 
 // Функция изменения имени и статуса
-function handleFormSubmit (evt) {
+function handleProfileFormSubmit (evt) {
     evt.preventDefault();
     profileNameElement.textContent = nameInput.value;
     profileJobElement.textContent = jobInput.value;
@@ -104,13 +107,17 @@ function openImagePopup(evt) {
 
 // Функция открытия попапов
 function openPopup(popup) {
-  const button = popup.querySelector('.popup__save-button');
-  button.classList.add('popup__save-button_inactive');
-  button.setAttribute('disabled', true); // Сделаем кнопку неактивной при открытии
   popup.classList.add('popup_opened');
   popup.addEventListener('click', closePopupOverlay); // Слушатель на закрытие кликом по оверлею
   document.addEventListener('keydown', closePopupEsc); // Слушатель на закрытие нажатием esc
 }
+
+// Функция деактивации кнопки при открытии попапа
+const disableButton = (popupElement) => {
+  const button = popupElement.querySelector('.popup__save-button');
+  button.classList.add('popup__save-button_inactive');
+  button.setAttribute('disabled', true); // Сделаем кнопку неактивной при открытии
+};
 
 // Функция закрытия попапов
 function closePopup(popup) {
@@ -141,7 +148,7 @@ document.querySelectorAll('.popup__close-button').forEach(button => {
 });
 
 popupProfileOpenButtonElement.addEventListener('click', openEditPopup);
-popupProfileFormElement.addEventListener('submit', handleFormSubmit);
+popupProfileFormElement.addEventListener('submit', handleProfileFormSubmit);
 
 popupAddCardOpenButtonElement.addEventListener('click', openAddPopup);
 popupAddCardFormElement.addEventListener('submit', addCard);
