@@ -1,3 +1,7 @@
+import Card from './Card.js';
+import FormValidator from './FormValidator.js';
+import { initialCards, validationConfig } from './const.js';
+
 const popupProfileElement = document.querySelector('.popup_function_edit-profile');
 const popupProfileOpenButtonElement = document.querySelector('.profile__edit-button');
 const popupProfileFormElement = popupProfileElement.querySelector('.popup__content');
@@ -16,16 +20,25 @@ const profileNameElement = document.querySelector('.profile__title');
 const profileJobElement = document.querySelector('.profile__subtitle');
 
 const elements = document.querySelector('.elements');
-const template = document.querySelector('.template').content;
-const templateCard = template.querySelector('.element');
 
-const imagePopupElement = document.querySelector('.popup_function_image');
+const formEditProfile = document.querySelector('.popup_function_edit-profile');
+const formAddCard = document.querySelector('.popup_function_add-card');
 
-const popupImage = imagePopupElement.querySelector('.popup__image');
-const popupImageText = imagePopupElement.querySelector('.popup__image-text'); 
+const formEditProfileInstance = new FormValidator(formEditProfile, validationConfig);
+const formAddCardInstance = new FormValidator(formAddCard, validationConfig);
 
-// Функция создания карточек
-createCard = (item) => {
+formEditProfileInstance.enableValidation();
+formAddCardInstance.enableValidation();
+
+initialCards.forEach((item) => {
+  const card = new Card(item, '.template');
+  const cardElement = card.createCard();
+  elements.prepend(cardElement);
+})
+
+const createCard = (item) => {
+  const template = document.querySelector('.template').content;
+  const templateCard = template.querySelector('.element');
   const htlmElement = templateCard.cloneNode(true);
 
   const templateImage = htlmElement.querySelector('.element__image');
@@ -47,17 +60,12 @@ function renderCard(item) {
   elements.prepend(item);
 }
 
-// Проходим по массиву
-initialCards.forEach((item) => {
-  renderCard(createCard(item));
-});
-
 // Функция открытия попапа добавления карточек
 function openAddPopup() {
   locationInput.value = '';
   imageLinkInput.value = '';
   openPopup(popupAddCardElement);
-  disableButton(popupAddCardElement)
+  disableButton(popupAddCardElement);
 }
 
 // Функция добавления карточки
@@ -123,6 +131,7 @@ const disableButton = (popupElement) => {
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
   document.removeEventListener('keydown', closePopupEsc);
+
 }
 
 // Функция закрытия попапов нажатием на esc
