@@ -55,17 +55,25 @@ class FormValidator {
   toggleButtonState () {
     // Если есть хотя бы один невалидный инпут
     if (this._hasInvalidInput()) { // сделай кнопку неактивной
-      this._buttonElement.classList.add(this._inactiveButtonClass);
-      this._buttonElement.setAttribute('disabled', true);
+      this.disableButton();
     } else { // иначе сделай кнопку активной
-      this._buttonElement.classList.remove(this._inactiveButtonClass);
-      this._buttonElement.removeAttribute('disabled', true);
+      this._enableButton();
     }
   }
 
   _hasInvalidInput () {
     return this._inputList.some((inputElement) => !inputElement.validity.valid);
   }
+
+  _enableButton () {
+    this._buttonElement.classList.remove(this._inactiveButtonClass);
+    this._buttonElement.removeAttribute('disabled', true);
+  }
+
+  disableButton () {
+    this._buttonElement.classList.add(this._inactiveButtonClass);
+    this._buttonElement.setAttribute('disabled', true);
+  };
 }
 
 export default FormValidator

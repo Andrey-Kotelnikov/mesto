@@ -1,10 +1,9 @@
-import { handleOpenImagePopup } from './utils.js';
-
 class Card {
-  constructor(data, templateSelector) {
+  constructor(data, templateSelector, openImagePopup) {
     this._name = data.name;
     this._link = data.link;
     this._templateSelector = templateSelector;
+    this._openImagePopup = openImagePopup;
   }
 
   _getTemplate() {
@@ -16,11 +15,13 @@ class Card {
     return cardElement;
   }
 
-  createCard() {
+  generateCard() {
     this._card = this._getTemplate();
+    this._cardImage = this._card.querySelector(".element__image");
+    this._likeButton = this._card.querySelector(".element__like");
 
-    this._card.querySelector(".element__image").src = this._link;
-    this._card.querySelector(".element__image").alt = this._name;
+    this._cardImage.src = this._link;
+    this._cardImage.alt = this._name;
     this._card.querySelector(".element__title").textContent = this._name;
 
     this._setEventListeners();
@@ -38,21 +39,17 @@ class Card {
     }); // Слушатель на лайк
 
     this._card.querySelector(".element__image").addEventListener("click", () => {
-      this._handleOpenImagePopup();
+      this._openImagePopup({name: this._name, link: this._link});
     }); // Слушатель на картинку
   }
 
   _deleteCard() {
     this._card.remove();
+    this._card = null;
   }
 
   _handleLikeButton() {
-    this._likeButton = this._card.querySelector(".element__like");
     this._likeButton.classList.toggle("element__like_active");
-  }
-
-  _handleOpenImagePopup() {
-    handleOpenImagePopup({name: this._name, link: this._link})
   }
 }
 
