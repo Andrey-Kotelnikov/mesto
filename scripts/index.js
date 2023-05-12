@@ -21,6 +21,10 @@ const profileJobElement = document.querySelector('.profile__subtitle');
 
 const elements = document.querySelector('.elements');
 
+const imagePopupElement = document.querySelector('.popup_function_image');
+const popupImage = imagePopupElement.querySelector('.popup__image');
+const popupImageText = imagePopupElement.querySelector('.popup__image-text');
+
 const formEditProfile = document.querySelector('.popup_function_edit-profile');
 const formAddCard = document.querySelector('.popup_function_add-card');
 
@@ -31,10 +35,6 @@ formEditProfileInstance.enableValidation();
 formAddCardInstance.enableValidation();
 
 function openImagePopup(cardData) {
-  const imagePopupElement = document.querySelector('.popup_function_image');
-  const popupImage = imagePopupElement.querySelector('.popup__image');
-  const popupImageText = imagePopupElement.querySelector('.popup__image-text');
-
   popupImage.src = cardData.link;
   popupImage.alt = cardData.name;
   popupImageText.textContent = cardData.name;
@@ -83,26 +83,6 @@ function handleProfileFormSubmit (evt) {
     closePopup(popupProfileElement);
 }
 
-/*// Функция открытия попапа картинки
-function openImagePopup(evt) {
-  const imageElement = evt.target.closest('.element__image');
-  openPopup(imagePopupElement);
-  popupImage.src = imageElement.src;
-  popupImage.alt = imageElement.alt
-  popupImageText.textContent = imageElement.alt;
-}*/
-
-/*function handleOpenImagePopup(cardData) {
-  const imagePopupElement = document.querySelector('.popup_function_image');
-  const popupImage = imagePopupElement.querySelector('.popup__image');
-  const popupImageText = imagePopupElement.querySelector('.popup__image-text');
-
-  popupImage.src = cardData.link;
-  popupImage.alt = cardData.name;
-  popupImageText.textContent = cardData.name;
-  openPopup(imagePopupElement);
-}*/
-
 // Функция открытия попапов
 function openPopup(popup) {
   popup.classList.add('popup_opened');
@@ -141,7 +121,6 @@ document.querySelectorAll('.popup__close-button').forEach(button => {
 // Обработчик попапов
 document.querySelectorAll('.popup').forEach(popup => {
   popup.addEventListener('click', closePopupOverlay); // Слушатель на закрытие кликом по оверлею
-  document.addEventListener('keydown', closePopupEsc); // Слушатель на закрытие нажатием esc
 });
 
 popupProfileOpenButtonElement.addEventListener('click', openEditPopup);
