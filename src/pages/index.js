@@ -73,6 +73,7 @@ popupEditProfileButton.addEventListener('click', () => {
 
 // Слушатель на кнопку добавления карточки
 popupAddCardButton.addEventListener('click', () => {
+  formAddCardInstance.disableButton();
   formAddCardInstance.hideErrors();
   popupAddCard.open();
 });

@@ -34,11 +34,11 @@ export default class Card {
       this._deleteCard();
     }); // Слушатель на корзину
 
-    this._card.querySelector(".element__like").addEventListener("click", () => {
+    this._likeButton.addEventListener("click", () => {
       this._handleLikeButton();
     }); // Слушатель на лайк
 
-    this._card.querySelector(".element__image").addEventListener("click", () => {
+    this._cardImage.addEventListener("click", () => {
       this._openImagePopup({name: this._name, link: this._link});
     }); // Слушатель на картинку
   }
