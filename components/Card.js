@@ -1,7 +1,7 @@
-class Card {
-  constructor(data, templateSelector, openImagePopup) {
-    this._name = data.name;
-    this._link = data.link;
+export default class Card {
+  constructor({name, link}, templateSelector, openImagePopup) {
+    this._name = name;
+    this._link = link;
     this._templateSelector = templateSelector;
     this._openImagePopup = openImagePopup;
   }
@@ -52,5 +52,3 @@ class Card {
     this._likeButton.classList.toggle("element__like_active");
   }
 }
-
-export default Card;

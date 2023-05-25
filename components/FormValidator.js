@@ -1,4 +1,4 @@
-class FormValidator {
+export default class FormValidator {
   constructor(
     form,
     {
@@ -74,6 +74,13 @@ class FormValidator {
     this._buttonElement.classList.add(this._inactiveButtonClass);
     this._buttonElement.setAttribute('disabled', true);
   };
-}
 
-export default FormValidator
+  hideErrors() {
+    this._inputList.forEach((inputElement) => {
+      const errorElement = this.form.querySelector(`.${inputElement.id}-error`);
+      if (errorElement !== null) {
+        this._hideInputError(inputElement, errorElement);
+      }
+    })
+  }
+}

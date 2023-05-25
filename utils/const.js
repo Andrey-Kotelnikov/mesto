@@ -33,4 +33,10 @@ const validationConfig = {
   inputErrorClass: 'popup__text_type_error'
 };
 
-export { initialCards, validationConfig }
+const formEditProfile = document.querySelector('.popup_function_edit-profile');
+const formAddCard = document.querySelector('.popup_function_add-card');
+
+const popupEditProfileButton = document.querySelector('.profile__edit-button');
+const popupAddCardButton = document.querySelector('.profile__add-button');
+
+export { initialCards, validationConfig, formEditProfile, formAddCard, popupEditProfileButton, popupAddCardButton }
