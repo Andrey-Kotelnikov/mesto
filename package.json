@@ -4,8 +4,28 @@
   "description": "Проект создан для публикования фотографий\r В разработке применяется flex и grid для выстраивания сетки, медиазапросы для адаптивности под разные экраны, реализовано всплывающие окна: с возможностью редактирования профиля, с добавлением новых карточек, с открытием фото на большой экран. Организовано по принципам ООП 2 класса: для карточек и валидации форм, файлы скрипта разбиты на разные модули и экспортированы в один файлю\r Ссылка на сайт: https://andrey-kotelnikov.github.io/mesto/index.html",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "webpack --mode production",
+    "dev": "webpack serve"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "keywords": [],
+  "devDependencies": {
+    "@babel/core": "^7.21.8",
+    "@babel/preset-env": "^7.21.5",
+    "autoprefixer": "^10.4.14",
+    "babel-loader": "^9.1.2",
+    "clean-webpack-plugin": "^4.0.0",
+    "css-loader": "^6.7.4",
+    "cssnano": "^6.0.1",
+    "html-webpack-plugin": "^5.5.1",
+    "mini-css-extract-plugin": "^2.7.6",
+    "postcss-loader": "^7.3.0",
+    "webpack": "^5.84.0",
+    "webpack-cli": "^5.1.1",
+    "webpack-dev-server": "^4.15.0"
+  },
+  "dependencies": {
+    "core-js": "^3.30.2"
+  }
 }

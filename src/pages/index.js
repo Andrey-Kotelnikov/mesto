@@ -1,3 +1,5 @@
+import './index.css';
+
 import Card from '../components/Card.js';
 import FormValidator from '../components/FormValidator.js';
 import {
@@ -74,3 +76,11 @@ popupAddCardButton.addEventListener('click', () => {
   formAddCardInstance.hideErrors();
   popupAddCard.open();
 });
+
+
+
+//const altayImage = new URL('./images/altay.jpg', import.meta.url);
+
+//const whoIsTheGoat = [
+//  { name: 'Michael Jordan', image: altayImage }
+//]

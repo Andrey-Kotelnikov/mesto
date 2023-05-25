@@ -1,28 +1,35 @@
+const elbrusImage = new URL('../images/elbrus.jpg', import.meta.url);
+const dombayImage = new URL('../images/dombay.jpg', import.meta.url);
+const arkhysImage = new URL('https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg', import.meta.url);
+const altayImage = new URL('../images/altay.jpg', import.meta.url);
+const dagestanImage = new URL('../images/dagestan.jpg', import.meta.url);
+const kamchatkaImage = new URL('../images/kamchatka.jpg', import.meta.url);
+
 // Массив карточек
 const initialCards = [
   {
     name: 'Эльбрус',
-    link: '../images/elbrus.jpg'
+    link: elbrusImage
   },
   {
     name: 'Домбай',
-    link: '../images/dombay.jpg'
+    link: dombayImage
   },
   {
     name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+    link: arkhysImage
   },
   {
     name: 'Алтай',
-    link: '../images/altay.jpg'
+    link: altayImage
   },
   {
     name: 'Дагестан',
-    link: '../images/dagestan.jpg'
+    link: dagestanImage
   },
   {
     name: 'Камчатский край',
-    link: '../images/kamchatka.jpg'
+    link: kamchatkaImage
   }
 ];
 
