@@ -68,13 +68,6 @@ class Api {
     .then(this._checkStatus)
   }
   
-  getAvatar() {
-    return fetch(`${this.baseUrl}/users/me`, {
-      headers: this.headers
-    })
-    .then(this._checkStatus)
-  }
-  
   like(id) {
     return fetch(`${this.baseUrl}/cards/${id}/likes`, {
       method: 'PUT',
@@ -91,50 +84,6 @@ class Api {
     .then(this._checkStatus)
   }
 }
-  
-  
-  
-  /*
-   // в index.js
-  
-  getItems()
-    .then((res) => {
-      console.log(res)
-      res.forEach((item) => {
-        const newCard = createCard(item)
-        cardList.addItemAppend(newCard)
-      })
-      
-    })
-    .catch((err) => {
-      console.log(err);
-    })
-  
-  getProfile()
-    .then((res) => {
-      profileInfo.setUserInfo({name: res.name, about: res.about})
-    })
-  
-  
-  getAvatar()
-    .then((res) => {
-      profileInfo.setAvatar({avatar: res.avatar})
-    })
-    
-  like('647a14a4cef3b70748d19644')
-  
-  //deleteLike('647a14a4cef3b70748d19644')
-  
-    fetch('https://nomoreparties.co/v1/cohort-66/users/me', {
-    headers: {
-      authorization: 'f10f5a64-3064-497a-969f-575534cc1185'
-    }
-  })
-    .then(res => res.json())
-    .then((result) => {
-      console.log(result);
-    }); 
-}*/
 
 export const api = new Api({
   baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-66',

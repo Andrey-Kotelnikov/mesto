@@ -20,6 +20,10 @@ import PopupDeleteCard from '../components/PopupDeleteCard.js';
 import UserInfo from '../components/UserInfo.js';
 import { api } from '../components/Api.js';
 
+
+let userId;
+
+
 // Функция создания карточки
 const createCard = (data) => {
   const card = new Card(
@@ -28,9 +32,37 @@ const createCard = (data) => {
     handleImagePopup,
     handleDeleteCard,
     handleLikeCard,
-    handleDislikeCard);
+    handleDislikeCard,
+    userId);
   return card.generateCard();
 }
+
+// Создаем контейнер с карточками
+const cardList = new Section({
+  renderer: (item) => {
+    const cardElement = createCard(item);
+    cardList.addItemPrepend(cardElement);
+}}, '.elements');
+
+cardList.renderItems([]);
+
+
+Promise.all([
+  api.getProfile(),
+  api.getItems()
+])
+  .then(([info, initialCards]) => {
+    console.log(info);
+    
+    profileInfo.setUserInfo(info)
+    profileInfo.setAvatar(info)
+    userId = info._id;
+    cardList.renderItems(initialCards);
+
+  })
+  .catch((err) => {console.log(err)})
+
+
 
 
 
@@ -40,14 +72,16 @@ function handleImagePopup(name, link) {
 }
 
 // Обработчик удаления карточки
-function handleDeleteCard(data, card) {
+function handleDeleteCard(card) {
   console.log(card)
   popupDelete.open();
   popupDelete.handleDeleteButton(() => {
-    api.deleteItem(data._id)
+    api.deleteItem(card.data._id)
       .then(() => {
-        card._card.remove();
-        card._card = null;
+        console.log(card)
+        //card._card.remove();
+        //card._card = null;
+        card.deleteCard()
         popupDelete.close();
       })
       .catch((err) => {console.log(err)})
@@ -74,15 +108,7 @@ function handleDislikeCard(card) {
     .catch((err) => {console.log(err)})
 }
 
-// Создаем контейнер с карточками
-const cardList = new Section({
-  items: [],
-  renderer: (item) => {
-    const cardElement = createCard(item);
-    cardList.addItem(cardElement);
-}}, '.elements');
 
-cardList.renderItems();
 
 const popupImage = new PopupWithImage('.popup_function_image');
 popupImage.setEventListeners();
@@ -121,8 +147,8 @@ const popupEditProfile = new PopupWithForm('.popup_function_edit-profile', (data
   console.log(data)
   popupEditProfile.loading(true, 'Сохранение...')
   api.editProfile(data)
-    .then(() => {
-      profileInfo.setUserInfo(data);
+    .then((res) => {
+      profileInfo.setUserInfo(res);
     })
     .then(() => {
       popupEditProfile.close();
@@ -139,8 +165,8 @@ const popupEditAvatar = new PopupWithForm('.popup_function_edit-avatar', (data) 
   console.log(data);
   popupEditAvatar.loading(true, 'Сохранение...')
   api.editAvatar(data)
-    .then(() => {
-      profileInfo.setAvatar(data);
+    .then((res) => {
+      profileInfo.setAvatar(res);
     })
     .then(() => {
       popupEditAvatar.close();
@@ -186,7 +212,7 @@ popupEditAvatarButton.addEventListener('click', () => {
   popupEditAvatar.open();
 })
 
-api.getItems()
+/*api.getItems()
 .then((res) => {
   console.log(res)
   res.forEach((item) => {
@@ -194,16 +220,17 @@ api.getItems()
     cardList.addItemAppend(newCard)
   })
 })
-.catch((err) => {console.log(err)})
+.catch((err) => {console.log(err)})*/
 
-api.getProfile()
+/*api.getProfile()
   .then((res) => {
-    profileInfo.setUserInfo({name: res.name, about: res.about})
+    profileInfo.setUserInfo({name: res.name, about: res.about});
+    profileInfo.setAvatar({avatar: res.avatar});
   })
-  .catch((err) => {console.log(err)})
+  .catch((err) => {console.log(err)})*/
 
-api.getAvatar()
+/*api.getAvatar()
   .then((res) => {
     profileInfo.setAvatar({avatar: res.avatar})
   })
-  .catch((err) => {console.log(err)})
+  .catch((err) => {console.log(err)})*/

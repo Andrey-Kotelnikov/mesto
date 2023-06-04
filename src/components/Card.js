@@ -1,5 +1,5 @@
 export default class Card {
-  constructor(data, templateSelector, handleImagePopup, handleDeletePopup, handleLikeCard, handleDislikeCard) {
+  constructor(data, templateSelector, handleImagePopup, handleDeletePopup, handleLikeCard, handleDislikeCard, userId) {
     this.data = data
     this._name = data.name;
     this._link = data.link;
@@ -7,10 +7,11 @@ export default class Card {
     this._handleImagePopup = handleImagePopup;
     this._handleDeletePopup = handleDeletePopup;
     this._likes = data.likes;
-    this._userId = data.owner._id;
+    this._ownerId = data.owner._id;
     this._id = data._id;
     this._handleLikeCard = handleLikeCard;
     this._handleDislikeCard = handleDislikeCard;
+    this._userId = userId;
   }
 
   _getTemplate() {
@@ -28,9 +29,12 @@ export default class Card {
     this._likeButton = this._card.querySelector(".element__like");
     this._likeCounter = this._card.querySelector(".element__like-counter");
     this._trash = this._card.querySelector(".element__trash");
-    if (this._userId !== 'db37483fe0816108ccbcc01a') {
+    if (this._ownerId !== this._userId) {
       this._trash.classList.add('element__trash_hidden');
     };
+    //if (this._ownerId !== 'db37483fe0816108ccbcc01a') {
+    //  this._trash.classList.add('element__trash_hidden');
+    //};
 
     this._cardImage.src = this._link;
     this._cardImage.alt = this._name;
@@ -44,7 +48,7 @@ export default class Card {
 
   _setEventListeners () {
     this._card.querySelector(".element__trash").addEventListener("click", () => {
-      this._handleDeletePopup(this.data, this);
+      this._handleDeletePopup(this);
       //this._deleteCard()
     }); // Слушатель на корзину
 
@@ -69,11 +73,11 @@ export default class Card {
     return this._id;
   }
 
-  /*deleteCard(card) {
+  deleteCard() {
     console.log('удаление в Card');
-    card.remove();
-    card = null;
-  }*/
+    this._card.remove();
+    this._card = null;
+  }
 
   toggleLike() {
     this._likeButton.classList.toggle("element__like_active");
@@ -84,8 +88,11 @@ export default class Card {
   }
 
   _CheckMyLike() {
-    if (this._likes.filter((like) => like._id === 'db37483fe0816108ccbcc01a').length > 0) {
+    if (this._likes.filter((like) => like._id === this._userId).length > 0) {
       this._likeButton.classList.add('element__like_active')
     }
+    //if (this._likes.filter((like) => like._id === 'db37483fe0816108ccbcc01a').length > 0) {
+    //  this._likeButton.classList.add('element__like_active')
+    //}
   }
 }
