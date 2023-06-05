@@ -41,10 +41,10 @@ const createCard = (data) => {
 const cardList = new Section({
   renderer: (item) => {
     const cardElement = createCard(item);
-    cardList.addItemPrepend(cardElement);
+    cardList.addItemAppend(cardElement);
 }}, '.elements');
 
-cardList.renderItems([]);
+//cardList.renderItems([]);
 
 
 Promise.all([
